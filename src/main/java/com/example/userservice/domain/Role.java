@@ -1,5 +1,6 @@
 package com.example.userservice.domain;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,10 +16,13 @@ import static javax.persistence.GenerationType.AUTO;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "roles")// Bunlar kalsin
+@Table(name="roles")
 public class Role {
     @Id
     @GeneratedValue(strategy = AUTO)
+
     private Long id;
     private String name;
+
+
 }

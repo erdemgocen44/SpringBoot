@@ -72,8 +72,7 @@ public class UserResource {
                         .withIssuer(request.getRequestURI().toString())
                         .withClaim("roles", user.getRoles().stream().map(Role::getName).collect(Collectors.toList()))
                         .sign(algorithm);
-                //response.setHeader("access_token", access_token);
-                //response.setHeader("refresh_token", refresh_token);
+
                 Map<String, String> tokens = new HashMap<>();
                 tokens.put("access_token", access_token);
                 tokens.put("refresh_token", refresh_token);
@@ -83,7 +82,6 @@ public class UserResource {
                 log.error("Error logging in: {}", exception.getMessage());
                 response.setHeader("error", exception.getMessage());
                 response.setStatus(FORBIDDEN.value());
-                //response.sendError(FORBIDDEN.value());
                 Map<String, String> error = new HashMap<>();
                 error.put("hata_mesaji", exception.getMessage());
                 response.setContentType(APPLICATION_JSON_VALUE);
@@ -94,10 +92,10 @@ public class UserResource {
             throw new RuntimeException("Refresh Token kayip...");
         }
     }
+}
 
     @Data
     class RoleToUserForm {
         private String username;
         private String roleName;
     }
-}
